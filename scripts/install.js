@@ -14,13 +14,13 @@ if(fs.existsSync(bin_path)) {
 	return;
 }
 
-var http = require('http');
-http.globalAgent = require("caw")(process.env.npm_config_proxy || process.env.http_proxy || process.env.HTTP_PROXY);
+var https = require('https');
+https.globalAgent = require("caw")(process.env.npm_config_proxy || process.env.http_proxy || process.env.HTTP_PROXY);
 var AdmZip = require('adm-zip');
 
 console.log('Downloading ResourceHacker by Angus Johnson...')
 var file = fs.createWriteStream(zip_path);
-var request = http.get(download_url, function(response) {
+var request = https.get(download_url, function(response) {
 	response.pipe(file);
 	file.on('finish', function() {
 		file.close(function(err){
