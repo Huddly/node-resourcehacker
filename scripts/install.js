@@ -20,7 +20,7 @@ var AdmZip = require('adm-zip');
 
 console.log('Downloading ResourceHacker by Angus Johnson...')
 var file = fs.createWriteStream(zip_path);
-var request = https.get(download_url, function(response) {
+var request = https.get(download_url, { protocol: 'https:' }, function(response) {
 	response.pipe(file);
 	file.on('finish', function() {
 		file.close(function(err){
