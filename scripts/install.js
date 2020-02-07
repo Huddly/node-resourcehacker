@@ -15,7 +15,8 @@ if(fs.existsSync(bin_path)) {
 }
 
 var https = require('https');
-https.globalAgent = require("caw")(process.env.npm_config_proxy || process.env.http_proxy || process.env.HTTP_PROXY);
+var http = require('http');
+https.globalAgent = require("caw")(process.env.npm_config_proxy || process.env.http_proxy || process.env.HTTP_PROXY) || https.globalAgent;
 var AdmZip = require('adm-zip');
 
 console.log('Downloading ResourceHacker by Angus Johnson...')
